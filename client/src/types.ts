@@ -22,3 +22,12 @@ export type DataType = Array<ObjType>
 export type ContextType = {
     children: React.ReactNode
 }
+
+export type SchoolType = {
+    id: number
+    school: string
+}
+export type EmployeesType = {
+    id: number
+    employees: string
+}

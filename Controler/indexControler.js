@@ -55,7 +55,7 @@ exports.download = async (req, res) => {
     const data = await db.all('SELECT * FROM `data`')
 
     const csvWriter = createCsvWriter({
-        path: 'data/data_torf.csv',
+        path: 'data/data.csv',
         header: [
             { id: 'id', title: "id" },
             { id: 'test', title: 'test' },

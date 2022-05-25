@@ -9,16 +9,6 @@ import { DataType, FakeLogin } from './types';
 import { useHttp } from './hooks/http.hook';
 
 
-
-const fakeData = [
-  {id: 1, fio: 'Сош', day: '', time: '', adress: '', fioDir: '', email: '', phone: 1   },
-  {id: 2, fio: 'Сош', day: '', time: '', adress: '', fioDir: '', email: '', phone: 1   },
-  {id: 3, fio: 'Сош', day: '', time: '', adress: '', fioDir: '', email: '', phone: 1   },
-  {id: 4, fio: 'Сош', day: '', time: '', adress: '', fioDir: '', email: '', phone: 1   },
-  {id: 5, fio: 'Сош', day: '', time: '', adress: '', fioDir: '', email: '', phone: 1   },
-  {id: 6, fio: 'Сош', day: '', time: '', adress: '', fioDir: '', email: '', phone: 1   },
-] as DataType
-
 const App = memo(() => {
 
   const [fakeLogin, setLogin] = useState<FakeLogin>({} as FakeLogin)

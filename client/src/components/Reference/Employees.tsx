@@ -2,6 +2,7 @@ import { FormControl, InputLabel, MenuItem, OutlinedInput, Select, SelectChangeE
 import { Box } from "@mui/system"
 import { memo, useEffect, useState } from "react"
 import { useHttp } from "../../hooks/http.hook"
+import { EmployeesType } from "../../types"
 
 
 export default memo(function Employees() {
@@ -17,18 +18,17 @@ export default memo(function Employees() {
 
     const getEmployees = () => {
         try {
-            request('http://localhost:5000/employees', 'GET').then(res => setEmployees(res.values))
+            request('http://localhost:5000/employees', 'GET').then((res) => setEmployees(res.values))
         } catch (e) {
             console.error(e)
         }
     }
 
     useEffect(() => getEmployees(), [])
-    useEffect(() => console.log(name), [name])
 
     return <>
         {employees &&
-            <Box sx={{ minWidth: 120 }}>
+            <Box sx={{ minWidth: "50vw", margin: '1em 0' }}>
                 <FormControl fullWidth>
                     <InputLabel id="demo-simple-select-label">ФИО</InputLabel>
                     <Select
@@ -39,7 +39,7 @@ export default memo(function Employees() {
                         onChange={handleChange}
                     >
                         {
-                            employees.map((item: any) => <MenuItem key={item.id} value={item.fio}>{item.fio}</MenuItem>)
+                            employees.map((item: EmployeesType) => <MenuItem key={item.id} value={item.employees}>{item.employees}</MenuItem>)
                         }
 
                     </Select>
