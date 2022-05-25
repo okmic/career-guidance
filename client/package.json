@@ -1,6 +1,6 @@
 {
   "name": "my-app",
-  "homepage": "https://okmic.github.io/TORF",
+  "homepage": "https://okmic.github.io/career-guidance",
   "version": "0.1.0",
   "private": true,
   "dependencies": {
@@ -15,7 +15,6 @@
     "react-dom": "17.0.1",
     "react-router-dom": "^6.3.0",
     "react-scripts": "5.0.0",
-    "recharts": "^2.1.9",
     "typescript": "^4.6.3",
     "web-vitals": "^2.1.4"
   },

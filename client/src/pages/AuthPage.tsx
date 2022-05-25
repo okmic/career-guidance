@@ -1,9 +1,9 @@
 import { useContext, useState } from "react"
-import { Context } from "../context"
+import { DataContext } from "../context/dataContext"
 
 export const AuthPage = () => {
 
-    const cont: any = useContext(Context)
+    const {setLogin} = useContext(DataContext)
     
     const [form, setForm] = useState({login: "", password: ""})
 
@@ -22,6 +22,6 @@ export const AuthPage = () => {
             placeholder="password"
             />
             <button 
-             onClick={() => cont.setLogin(form)}>In</button>
+             onClick={() => setLogin(form)}>In</button>
         </div>
 }
