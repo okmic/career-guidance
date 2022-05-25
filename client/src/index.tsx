@@ -34,7 +34,6 @@ const App = memo(() => {
          request('http://localhost:5000/all', 'get').then((res) => {
             if(res.status === 200  && res.values.length > 0) {
               setData(res.values)
-              console.log('added', res.values)
             }
          })
     } catch (e) {

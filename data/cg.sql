@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Хост: 127.0.0.1:3306
--- Время создания: Май 25 2022 г., 14:32
+-- Время создания: Май 25 2022 г., 17:05
 -- Версия сервера: 8.0.24
 -- Версия PHP: 7.1.33
 
@@ -18,7 +18,7 @@ SET time_zone = "+00:00";
 /*!40101 SET NAMES utf8mb4 */;
 
 --
--- База данных: `cg`
+-- База данных: `sg`
 --
 
 -- --------------------------------------------------------
@@ -39,6 +39,28 @@ CREATE TABLE `data` (
   `email` varchar(100) CHARACTER SET utf8 COLLATE utf8_general_ci NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb3;
 
+-- --------------------------------------------------------
+
+--
+-- Структура таблицы `employees`
+--
+
+CREATE TABLE `employees` (
+  `id` int NOT NULL,
+  `fio` varchar(300) CHARACTER SET utf8 COLLATE utf8_general_ci NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb3;
+
+-- --------------------------------------------------------
+
+--
+-- Структура таблицы `schools`
+--
+
+CREATE TABLE `schools` (
+  `id` int NOT NULL,
+  `school` varchar(300) CHARACTER SET utf8 COLLATE utf8_general_ci NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb3;
+
 --
 -- Индексы сохранённых таблиц
 --
@@ -50,6 +72,18 @@ ALTER TABLE `data`
   ADD PRIMARY KEY (`id`);
 
 --
+-- Индексы таблицы `employees`
+--
+ALTER TABLE `employees`
+  ADD PRIMARY KEY (`id`);
+
+--
+-- Индексы таблицы `schools`
+--
+ALTER TABLE `schools`
+  ADD PRIMARY KEY (`id`);
+
+--
 -- AUTO_INCREMENT для сохранённых таблиц
 --
 
@@ -57,6 +91,18 @@ ALTER TABLE `data`
 -- AUTO_INCREMENT для таблицы `data`
 --
 ALTER TABLE `data`
+  MODIFY `id` int NOT NULL AUTO_INCREMENT;
+
+--
+-- AUTO_INCREMENT для таблицы `employees`
+--
+ALTER TABLE `employees`
+  MODIFY `id` int NOT NULL AUTO_INCREMENT;
+
+--
+-- AUTO_INCREMENT для таблицы `schools`
+--
+ALTER TABLE `schools`
   MODIFY `id` int NOT NULL AUTO_INCREMENT;
 COMMIT;
 
