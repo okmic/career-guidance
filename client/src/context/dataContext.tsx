@@ -2,7 +2,7 @@ import React from "react"
 import { DataType, FakeLogin } from '../types'
 
 type _data = {
-  fakeData: DataType
+  data: DataType | null
   setLogin: (d: FakeLogin) => void
 }
 

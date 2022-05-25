@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Хост: 127.0.0.1:3306
--- Время создания: Апр 23 2022 г., 12:10
+-- Время создания: Май 25 2022 г., 14:32
 -- Версия сервера: 8.0.24
 -- Версия PHP: 7.1.33
 
@@ -18,7 +18,7 @@ SET time_zone = "+00:00";
 /*!40101 SET NAMES utf8mb4 */;
 
 --
--- База данных: `torf`
+-- База данных: `cg`
 --
 
 -- --------------------------------------------------------
@@ -29,9 +29,14 @@ SET time_zone = "+00:00";
 
 CREATE TABLE `data` (
   `id` int NOT NULL,
-  `temperature` int NOT NULL,
-  `humidity` int NOT NULL,
-  `date` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP
+  `school` varchar(300) CHARACTER SET utf8 COLLATE utf8_danish_ci NOT NULL,
+  `fio` varchar(150) CHARACTER SET utf8 COLLATE utf8_general_ci NOT NULL,
+  `day` varchar(50) CHARACTER SET utf8 COLLATE utf8_general_ci NOT NULL,
+  `time` varchar(50) CHARACTER SET utf8 COLLATE utf8_general_ci NOT NULL,
+  `adress` text CHARACTER SET utf8 COLLATE utf8_general_ci NOT NULL,
+  `fioDir` varchar(150) CHARACTER SET utf8 COLLATE utf8_general_ci NOT NULL,
+  `phone` int NOT NULL,
+  `email` varchar(100) CHARACTER SET utf8 COLLATE utf8_general_ci NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb3;
 
 --

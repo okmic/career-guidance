@@ -9,16 +9,13 @@ export type ObjType = {
     id: number
     school: string
     fio: string
-    date: {
-        day: string, 
-        time: string
-    }
+    day: string, 
+    time: string
     adress: string
     fioDir: string
-    contacts: {
-        phone: string
-        email: string
-    }
+    phone: number
+    email: string
+
 }
 export type DataType = Array<ObjType>
 

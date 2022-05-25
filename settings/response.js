@@ -7,5 +7,6 @@ exports.status = (values, res) => {
     }
     res.json(data)
     res.end()
-
 }
+
+exports.error = (e, res) => res.status(500).send(e)

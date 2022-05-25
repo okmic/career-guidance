@@ -4,52 +4,51 @@ const createCsvWriter = require('csv-writer').createObjectCsvWriter;
 const db = require('./../settings/db.js')
 const response = require('./../settings/response.js')
 
-
-exports.all = (req, res) => {
-     db.query('SELECT * FROM `data`', (error, rows, fields) => {
-        if (error) {
-            console.log('error')
-         } else {
-            response.status(rows, res)
-         }
-    })
+exports.all = async (req, res) => {
+    try {
+        const data = await db.all('SELECT * FROM `data`')
+        response.status(data, res)
+    }
+    catch (e) {
+        console.error(e)
+    }
 }
 
 exports.send = (req, res) => {
-    db.query("INSERT INTO `data` (`id`, `temperature`, `humidity`, `date`) VALUES " + `(NULL, ${req.body[0]}, ${req.body[1]}, CURRENT_TIMESTAMP)`, (error, rows, fields) => {
-       if (error) {
-           console.log('error')
-        } else {
-           response.status('ok', res)
-           console.log('ok')
-        }
-   })
+   try {
+    const {school, fio, day, time, adress, fioDir, phone, email} = req.body
+     if (school || fio || day || time || adress || fioDir || phone || email ===  undefined) {
+         return response.error({message: "error date"}, res)
+     }
+    db.send("INSERT INTO `data` (`id`, `school`, `fio`, `day`, `time`, `adress`, `fioDir`, `phone`, `email`) VALUES " + `(NULL, "${school}", "${fio}", "${day}", "${time}", "${adress}", "${fioDir}", "${phone}", "${email}")`)
+
+    response.status('ok', res)
+   }
+   catch (e) {
+       console.error(e)
+       response.error(e, res)
+   }
 }
 
 exports.download = async (req, res) => {
 
-    await db.query('SELECT * FROM `data`', (error, rows, fields) => {
-        if (error) {
-            console.log('error')
-         } else {
-            const csvWriter = createCsvWriter({
-                path: 'data/data_torf.csv',
-                header: [
-                    {id: 'id', title: "id"},
-                    {id: 'test', title: 'test'},
-                    {id: 'test', title: 'test'},
-                    {id: 'test', title: 'test'}
-                ]
-            })
-            csvWriter.writeRecords(rows) 
-        .then(() => {
-            console.log('file csv writed')
+    const data = await db.all('SELECT * FROM `data`')
 
-            let fileLocation = path.join('./data', 'data.csv');
+    const csvWriter = createCsvWriter({
+            path: 'data/data_torf.csv',
+            header: [
+                {id: 'id', title: "id"},
+                {id: 'test', title: 'test'},
+                {id: 'test', title: 'test'},
+                {id: 'test', title: 'test'}
+            ]
+        })
+        csvWriter.writeRecords(data).then(() => {
+        console.log('file csv writed')
 
-            res.download(fileLocation)
-            })
-    }
-    })
+        let fileLocation = path.join('./data', 'data.csv');
+
+        res.download(fileLocation)
+        })   
     
 }
