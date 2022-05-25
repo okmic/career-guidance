@@ -14,14 +14,15 @@ function MainPage() {
         console.error(e)
     }
   }
-  sendData()
+  
+
 
   return <div className="App">
       <header className="App-header">
         <h1>career-guidance</h1> 
         <List />
       </header>
-
+    
     </div>
 }
 
