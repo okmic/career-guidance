@@ -4,6 +4,7 @@ module.exports = (app) => {
 
     app.route('/all').get(indexControler.all)
     app.route('/send').post(indexControler.send)
+    app.route('/update').post(indexControler.update)
     app.route('/download').get(indexControler.download)
 
     app.route('/schools').get(indexControler.refSchools)

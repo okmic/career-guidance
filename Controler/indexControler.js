@@ -50,6 +50,21 @@ exports.send = (req, res) => {
         response.error(e, res)
     }
 }
+exports.update = (req, res) => {
+    try {
+        const { id, was } = req.body
+        if (id === undefined) {
+            return response.error({ message: "error date" }, res)
+        } else {
+            db.send(`UPDATE \`data\` SET \`was\`='${was}' WHERE \`id\` = '${id}'`)
+            response.status('ok', res)
+        }
+    }
+    catch (e) {
+        response.error(e, res)
+    }
+}
+
 
 exports.download = async (req, res) => {
 

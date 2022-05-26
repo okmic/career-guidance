@@ -1,4 +1,4 @@
-import { memo, useContext, useEffect, useState } from 'react';
+import { memo, useContext, useState } from 'react';
 import '../index.css';
 import { useHttp } from '../hooks/http.hook';
 import List from '../components/List/List';
@@ -7,7 +7,6 @@ import Schools from '../components/Reference/Schools';
 import Modal from '../components/Modal/Modal';
 import { useInput } from '../hooks/useInputs';
 import { Adress, Date, Email, FioDir, NewButton, Phone, Time } from '../components/Inputs';
-import { useCheck } from '../hooks/useCheck';
 import { DataContext } from '../context/dataContext';
 
 function MainPage() {
@@ -24,11 +23,11 @@ function MainPage() {
   const firdir = useInput('')
   const phone = useInput('')
   const email = useInput('')
-  const check = useCheck(false)
+
 
    const getPostSend = () => {
     try {
-      request('http://localhost:5000/send', 'POST', {fio: fio.value, school: shcools.value, day: day.value, time: time.value, adress: adress.value, fioDir: firdir.value, phone: phone.value, email: email.value, was: !check ? 0 : 1 })
+      request('http://localhost:5000/send', 'POST', {fio: fio.value, school: shcools.value, day: day.value, time: time.value, adress: adress.value, fioDir: firdir.value, phone: phone.value, email: email.value, was: 0 })
     } catch (e) {
       console.error(e)
     }
@@ -48,7 +47,7 @@ function MainPage() {
     <header className="App-header">
       <h1>Профориентация</h1>
       <button onClick={() => setModal(!modal)}>Новая запись</button>
-      <List check={check} />
+      <List />
       {modal && 
         <Modal callback={() => setModal(false)}>
           <button onClick={() => setModal(false)} className="close">X</button>
