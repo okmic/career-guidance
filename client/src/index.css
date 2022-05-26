@@ -18,7 +18,9 @@ body {
     animation: App-logo-spin infinite 20s linear;
   }
 }
-
+button {
+  cursor: pointer;
+}
 .App-header {
   background-color: #3b3833;
   min-height: 100vh;
@@ -53,4 +55,10 @@ body {
   border: 1px solid red;
   font-size: 21px;
   cursor: pointer;
+}
+.close {
+  position: absolute;
+  top: 1em;
+  right: 1em;
+  color: red;
 }

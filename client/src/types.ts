@@ -15,7 +15,7 @@ export type ObjType = {
     fioDir: string
     phone: number
     email: string
-
+    was: number
 }
 export type DataType = Array<ObjType>
 
@@ -29,5 +29,5 @@ export type SchoolType = {
 }
 export type EmployeesType = {
     id: number
-    employees: string
+    fio: string
 }

@@ -39,7 +39,7 @@ export default memo(function Employees() {
                         onChange={handleChange}
                     >
                         {
-                            employees.map((item: EmployeesType) => <MenuItem key={item.id} value={item.employees}>{item.employees}</MenuItem>)
+                            employees.map((item: EmployeesType) => <MenuItem key={item.id} value={item.fio}>{item.fio}</MenuItem>)
                         }
 
                     </Select>
