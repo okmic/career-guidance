@@ -4,6 +4,7 @@ import { DataType, FakeLogin } from '../types'
 type _data = {
   data: DataType | null
   setLogin: (d: FakeLogin) => void
+  getData: () => void
 }
 
 type DataContextType = {

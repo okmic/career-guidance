@@ -46,7 +46,7 @@ function createData(
 }
 
 type list = {
-    check: {value: boolean, onClick: () => void}
+    check: {value: boolean, onChange: (e: any) => void}
 }
 
 export default function List({check}: list) {
@@ -89,7 +89,7 @@ export default function List({check}: list) {
                             <StyledTableCell align="center">{row.fioDir}</StyledTableCell>
                             <StyledTableCell align="center">{row.phone}</StyledTableCell>
                             <StyledTableCell align="center">{row.email}</StyledTableCell>
-                            <StyledTableCell align="center"><Check check={check}  /></StyledTableCell>
+                            <StyledTableCell align="center"><Check check={check} was={row.was}/></StyledTableCell>
                         </StyledTableRow>
                     ))}
                 </TableBody>

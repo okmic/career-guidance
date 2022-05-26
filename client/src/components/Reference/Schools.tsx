@@ -1,20 +1,16 @@
-import { FormControl, InputLabel, MenuItem, Select, SelectChangeEvent } from "@mui/material"
+import { FormControl, InputLabel, MenuItem, Select } from "@mui/material"
 import { Box } from "@mui/system"
 import { memo, useEffect, useState } from "react"
 import { useHttp } from "../../hooks/http.hook"
 import { SchoolType } from "../../types"
+import { ParamInputType } from "./Employees"
 
 
-export default memo(function Schools () {
+export default memo(function Schools ({params}: ParamInputType) {
     
     const {request} = useHttp()
     const [schools, setSchools] = useState([])
 
-    const handleChange = (event: SelectChangeEvent) => {
-        setName(event.target.value as string);
-    }
-
-    const [name, setName] = useState('')
 
     const getSchools = () => {
         try {
@@ -35,9 +31,8 @@ export default memo(function Schools () {
                     <Select
                         labelId="demo-simple-select-label"
                         id="demo-simple-select"
-                        value={name}
                         label="Заведения"
-                        onChange={handleChange}
+                        {...params}
                     >
                         {
                             schools.map((item: SchoolType) => <MenuItem key={item.id} value={item.school}>{item.school}</MenuItem>)

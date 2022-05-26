@@ -5,12 +5,12 @@ export const useCheck = (initValue: boolean) => {
 
     const [value, setValue] = useState(initValue)
 
-    const onClick = () => {
-        setValue(!value)
+    const onChange = (e: any) => {
+        setValue(e.target.value)
     }
 
     return {
-        value, onClick
+        value, onChange
     }
     
 }

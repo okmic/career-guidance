@@ -36,16 +36,17 @@ exports.refEmployees = async (req, res) => {
 
 exports.send = (req, res) => {
     try {
-        const { school, fio, day, time, adress, fioDir, phone, email } = req.body
-        if (school || fio || day || time || adress || fioDir || phone || email === undefined) {
+        const { school, fio, day, time, adress, fioDir, phone, email, was } = req.body
+        if ((school || fio || day || time || adress || fioDir || phone || email) === undefined) {
+            
             return response.error({ message: "error date" }, res)
+        } else {
+            db.send("INSERT INTO `data` (`id`, `school`, `fio`, `day`, `time`, `adress`, `fioDir`, `phone`, `email`, `was`) VALUES " + `(NULL, "${school}", "${fio}", "${day}", "${time}", "${adress}", "${fioDir}", "${phone}", "${email}", "${was}")`)
+            //errors send data client
+            response.status('ok', res)
         }
-        db.send("INSERT INTO `data` (`id`, `school`, `fio`, `day`, `time`, `adress`, `fioDir`, `phone`, `email`) VALUES " + `(NULL, "${school}", "${fio}", "${day}", "${time}", "${adress}", "${fioDir}", "${phone}", "${email}")`)
-
-        response.status('ok', res)
     }
     catch (e) {
-        console.error(e)
         response.error(e, res)
     }
 }

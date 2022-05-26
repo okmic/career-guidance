@@ -1,20 +1,21 @@
-import { FormControl, InputLabel, MenuItem, OutlinedInput, Select, SelectChangeEvent } from "@mui/material"
+import { FormControl, InputLabel, MenuItem, Select } from "@mui/material"
 import { Box } from "@mui/system"
 import { memo, useEffect, useState } from "react"
 import { useHttp } from "../../hooks/http.hook"
 import { EmployeesType } from "../../types"
 
+export type ParamInputType = {
+    params: {
+        onChange: (c: any) => void
+        value: string
+    }
+}
 
-export default memo(function Employees() {
+export default memo(function Employees({params}:  ParamInputType) {
 
     const { request } = useHttp()
     const [employees, setEmployees] = useState([])
 
-    const [name, setName] = useState('')
-
-    const handleChange = (event: SelectChangeEvent) => {
-        setName(event.target.value as string);
-    }
 
     const getEmployees = () => {
         try {
@@ -34,9 +35,9 @@ export default memo(function Employees() {
                     <Select
                         labelId="demo-simple-select-label"
                         id="demo-simple-select"
-                        value={name}
                         label="ФИО"
-                        onChange={handleChange}
+                        value={params.value}
+                        onChange={params.onChange}
                     >
                         {
                             employees.map((item: EmployeesType) => <MenuItem key={item.id} value={item.fio}>{item.fio}</MenuItem>)
@@ -49,6 +50,5 @@ export default memo(function Employees() {
 
     </>
 })
-
 
 

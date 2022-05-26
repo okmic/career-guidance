@@ -19,8 +19,9 @@ const App = memo(() => {
 
   const [data, setData] = useState<DataType | null>(null)
 
-  const sendData = async () => {
+  const getData = async () => {
     try {
+        setData(null)
          request('http://localhost:5000/all', 'get').then((res) => {
             if(res.status === 200  && res.values.length > 0) {
               setData(res.values)
@@ -32,10 +33,10 @@ const App = memo(() => {
   }
 
 useEffect(() => {
-  sendData()
+  getData()
 }, [])
 
-  return <DataContextProvider data={{data, setLogin}}>
+  return <DataContextProvider data={{data, setLogin, getData}}>
     <BrowserRouter>
       <div className="App">
         {routes}

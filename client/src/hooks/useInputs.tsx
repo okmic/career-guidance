@@ -1,16 +1,31 @@
+import { SelectChangeEvent } from "@mui/material";
 import { useState } from "react"
 
 
-export const useInput = (initValue: string | number | boolean) => {
+export const useInput = (initValue: string, select?: boolean) => {
 
     const [value, setValue] = useState(initValue)
 
-    const onChange = (e: any) => {
-        setValue(e.currentTarget.value)
-    }
+    if(select) {
 
-    return {
-        value, onChange
+        const onChange = (event: SelectChangeEvent) => {
+            setValue(event.target.value as string)
+        }
+
+        return {
+            value, onChange
+        }
+    }  else {
+        const onChange = (e: any) => {
+            setValue(e.currentTarget.value)
+        }
+    
+        return {
+            value, onChange
+        }
     }
+    
+
+
     
 }
