@@ -21,10 +21,9 @@ const App = memo(() => {
 
   const getData = async () => {
     try {
-        setData(null)
          request('http://localhost:5000/all', 'get').then((res) => {
             if(res.status === 200  && res.values.length > 0) {
-              setData(res.values)
+              setData(res.values.map((element: DataType) => ({...element})))
             }
          })
     } catch (e) {
