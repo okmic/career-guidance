@@ -31,7 +31,9 @@ button {
   font-size: calc(10px + 2vmin);
   color: rgb(214, 206, 206);
 }
-
+.logo {
+  max-width: 150px;
+}
 .App-link {
   color: #61dafb;
 }

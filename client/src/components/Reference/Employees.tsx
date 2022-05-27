@@ -1,4 +1,5 @@
 import { FormControl, InputLabel, MenuItem, Select } from "@mui/material"
+//@ts-ignore
 import { Box } from "@mui/system"
 import { memo, useEffect, useState } from "react"
 import { useHttp } from "../../hooks/http.hook"

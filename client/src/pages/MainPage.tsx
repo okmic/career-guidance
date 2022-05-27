@@ -8,6 +8,7 @@ import Modal from '../components/Modal/Modal';
 import { useInput } from '../hooks/useInputs';
 import { Adress, Date, Email, FioDir, NewButton, Phone, Time } from '../components/Inputs';
 import { DataContext } from '../context/dataContext';
+import logo from '../img/logo.png'
 
 function MainPage() {
 
@@ -44,8 +45,10 @@ function MainPage() {
   }
 
   return <div className="App">
+        
     <header className="App-header">
-      <h1>Профориентация</h1>
+    <img src={logo} className="logo" alt="logo" />
+      <h3>Профориентация</h3>
       <button onClick={() => setModal(!modal)}>Новая запись</button>
       <List />
       {modal && 
