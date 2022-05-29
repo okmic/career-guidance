@@ -9,6 +9,7 @@ import { useInput } from '../hooks/useInputs';
 import { Adress, Date, Email, FioDir, NewButton, Phone, Time } from '../components/Inputs';
 import { DataContext } from '../context/dataContext';
 import logo from '../img/logo.png'
+import down from '../img/download.png'
 
 function MainPage() {
 
@@ -45,9 +46,15 @@ function MainPage() {
   }
 
   return <div className="App">
-        
+            <button className='download'>
+               <a href="http://localhost:5000/download" target="_blank" rel="noreferrer">
+                <h3>CSV</h3>
+                <img src={down} alt="download" />
+               </a>
+            </button>
     <header className="App-header">
     <img src={logo} className="logo" alt="logo" />
+
       <h3>Профориентация</h3>
       <button onClick={() => setModal(!modal)}>Новая запись</button>
       <List />

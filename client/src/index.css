@@ -64,3 +64,20 @@ button {
   right: 1em;
   color: red;
 }
+.download {
+  position: absolute;
+  top: 0;
+  right: 0;
+  background-color: greenyellow;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  border: none;
+}
+.download a {
+  text-decoration: none;
+  color: rgb(56, 35, 35);
+}
+.download img{
+  max-width: 50px;
+}

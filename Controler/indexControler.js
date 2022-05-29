@@ -74,13 +74,19 @@ exports.download = async (req, res) => {
         path: 'data/data.csv',
         header: [
             { id: 'id', title: "id" },
-            { id: 'test', title: 'test' },
-            { id: 'test', title: 'test' },
-            { id: 'test', title: 'test' }
+            { id: 'school', title: 'Заведение' },
+            { id: 'fio', title: 'ФИО' },
+            { id: 'day', title: 'Дата' },
+            { id: 'time', title: 'Время' },
+            { id: 'adress', title: 'Адрес' },
+            { id: 'fioDir', title: 'ФИО Директора' },
+            { id: 'phone', title: 'Телефон' },
+            { id: 'email', title: 'Почта' },
+            { id: 'was', title: 'Статус(0 - не посещали, 1 - посещали)' }
         ]
     })
     csvWriter.writeRecords(data).then(() => {
-        console.log('file csv writed')
+        console.log('csv writed')
 
         let fileLocation = path.join('./data', 'data.csv');
 
