@@ -14,6 +14,7 @@ export default function Modal ({callback, children}: PropsType) {
 
     return <div className={styles.wrapper} onClick={callback}>
                 <div className={styles.container} onClick={hundleSubmit}>
+                <button onClick={() => callback(false)} className="close">X</button>
                     {children}
                 </div>
     </div>

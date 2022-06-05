@@ -34,14 +34,25 @@ exports.refEmployees = async (req, res) => {
     }
 }
 
+exports.refEvents = async (req, res) => {
+    try {
+        const data = await db.all('SELECT * FROM `events`')
+        response.status(data, res)
+    }
+    catch (e) {
+        response.error(e, res)
+    }
+}
+
 exports.send = (req, res) => {
     try {
-        const { school, fio, day, time, adress, fioDir, phone, email, was } = req.body
+        const { school, fio, day, time, adress, fioDir, phone, email, event, was } = req.body
+        
         if ((school || fio || day || time || adress || fioDir || phone || email) === undefined) {
-            
+
             return response.error({ message: "error date" }, res)
         } else {
-            db.send("INSERT INTO `data` (`id`, `school`, `fio`, `day`, `time`, `adress`, `fioDir`, `phone`, `email`, `was`) VALUES " + `(NULL, "${school}", "${fio}", "${day}", "${time}", "${adress}", "${fioDir}", "${phone}", "${email}", "${was}")`)
+            db.send("INSERT INTO `data` (`id`, `school`, `fio`, `day`, `time`, `adress`, `fioDir`, `phone`, `email`, `event`, `was`) VALUES " + `(NULL, "${school}", "${fio}", "${day}", "${time}", "${adress}", "${fioDir}", "${phone}", "${email}", "${event}", "${was}")`)
             //errors send data client
             response.status('ok', res)
         }
@@ -82,6 +93,7 @@ exports.download = async (req, res) => {
             { id: 'fioDir', title: 'ФИО Директора' },
             { id: 'phone', title: 'Телефон' },
             { id: 'email', title: 'Почта' },
+            { id: 'event', title: 'Вид' },
             { id: 'was', title: 'Статус(0 - не посещали, 1 - посещали)' }
         ]
     })
@@ -92,5 +104,29 @@ exports.download = async (req, res) => {
 
         res.download(fileLocation)
     })
+
+}
+
+exports.addDirectory = (req, res) => {
+    if (!req.body) response.error({ message: "error dir" }, res)
+
+    const {value, type} = req.body
+
+    switch (type) {
+        case 'add-school':
+            db.send("INSERT INTO `schools` (`id`, `school`) VALUES " + `(NULL, "${value}")`)
+            response.status('ok', res)
+            break
+        case 'add-employe':
+            db.send("INSERT INTO `employees` (`id`, `fio`) VALUES " + `(NULL, "${value}")`)
+            response.status('ok', res)
+            break
+        case 'add-event':
+            db.send("INSERT INTO `events` (`id`, `event`) VALUES " + `(NULL, "${value}")`)
+            response.status('ok', res)
+            break
+        default: response.error({ message: "not order" }, res)
+        
+    }
 
 }

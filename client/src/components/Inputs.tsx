@@ -3,19 +3,22 @@ import Button from '@mui/material/Button'
 import { useEffect, useState } from "react"
 
 
-export const Date: React.FC<Date> = ({date}) => <TextField type="date" {...date} id="standard-basic" variant="standard" />
+export const Date: React.FC<DateType> = ({date}) => <TextField type="date" {...date} id="standard-basic" variant="standard" />
 
-export const Time: React.FC<Time> = ({time}) => <TextField type="text" label="Время" {...time} id="standard-basic" variant="standard" />
+export const Time: React.FC<TimeType> = ({time}) => <TextField type="text" label="Время" {...time} id="standard-basic" variant="standard" />
 
-export const Adress: React.FC<Adress> = ({adress}) => <TextField {...adress} id="standard-basic" label="Адресс" variant="standard" />
+export const Adress: React.FC<AdressType> = ({adress}) => <TextField {...adress} id="standard-basic" label="Адрес" variant="standard" />
 
-export const FioDir: React.FC<FioDir> = ({fioDir}) => <TextField {...fioDir} id="standard-basic" label="ФИО директора" variant="standard" />
+export const FioDir: React.FC<FioDirType> = ({fioDir}) => <TextField {...fioDir} id="standard-basic" label="ФИО директора" variant="standard" />
 
-export const Phone: React.FC<Phone> = ({phone}) => <TextField type="number"  {...phone} id="standard-basic" label="Телефон" variant="standard" />
 
-export const Email: React.FC<Email> = ({email}) => <TextField  {...email} id="standard-basic" label="Почта" variant="standard" />
+export const Contacts: React.FC<ContactsType> = ({contacts}) => <TextField type='text'  {...contacts} id="standard-basic" label="Почта" variant="standard" />
 
-export const Check: React.FC<Check> = ({was, id, getUpdateSend}) => {
+
+export const UniversInput: React.FC<UniversType> = ({params, label}) => <TextField type="text" label={label} {...params} id="standard-basic" variant="standard" />
+
+
+export const Check: React.FC<CheckType> = ({was, id, getUpdateSend}) => {
 
     const [order, setOrder] = useState(false)
 
@@ -40,27 +43,28 @@ type input = {
     value: string | number | undefined| boolean
     onChange: (e: any) => void
 }
-type Date = {
+type DateType = {
     date: input
 }
-type Time = {
+type TimeType = {
     time: input
 }
-type Adress = {
+type AdressType = {
     adress: input
 }
 
-type FioDir = {
+type FioDirType = {
     fioDir: input
 }
-type Phone = {
-    phone: input
+type ContactsType = {
+    contacts: input
 }
-type Email = {
-    email: input
-}
-type Check = {
+type CheckType = {
     was: number
     id: number
     getUpdateSend: (id: number, was: 0 | 1) => void, 
+}
+type UniversType = {
+    params: input
+    label: string
 }

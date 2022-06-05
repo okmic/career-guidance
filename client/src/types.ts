@@ -13,8 +13,8 @@ export type ObjType = {
     time: string
     adress: string
     fioDir: string
-    phone: number
-    email: string
+    contacts: string
+    event: string
     was: number
 }
 export type DataType = Array<ObjType>
@@ -30,4 +30,8 @@ export type SchoolType = {
 export type EmployeesType = {
     id: number
     fio: string
+}
+export type EventsType = {
+    id: number
+    event: string
 }

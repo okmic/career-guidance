@@ -9,5 +9,8 @@ module.exports = (app) => {
 
     app.route('/schools').get(indexControler.refSchools)
     app.route('/employees').get(indexControler.refEmployees)
+    app.route('/events').get(indexControler.refEvents)
+
+    app.route('/add-directory').post(indexControler.addDirectory)
 
 }

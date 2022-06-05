@@ -53,8 +53,8 @@ export default function List() {
                         time: item.time,
                         adress: item.adress,
                         fioDir: item.fioDir,
-                        phone: item.phone,
-                        email: item.email,
+                        contacts: item.contacts,
+                        event: item.event,
                         was: was
                     }): ({...item})))
                 } else alert('Ошибка запроса')
@@ -72,7 +72,7 @@ export default function List() {
 
     return (
         <TableContainer component={Paper}>
-            <Table sx={{ minWidth: 700 }} aria-label="customized table">
+            <Table sx={{ minWidth: 700, overflowX: 'visible'}} aria-label="customized table">
                 <TableHead>
                     <TableRow>
                         <StyledTableCell align="center">№ п/п</StyledTableCell>
@@ -82,8 +82,8 @@ export default function List() {
                         <StyledTableCell align="center">Время</StyledTableCell>
                         <StyledTableCell align="center">Адрес</StyledTableCell>
                         <StyledTableCell align="center">ФИО директора </StyledTableCell>
-                        <StyledTableCell align="center">Телефон</StyledTableCell>
-                        <StyledTableCell align="center">Почта</StyledTableCell>
+                        <StyledTableCell align="center">Контакты</StyledTableCell>
+                        <StyledTableCell align="center">Вид</StyledTableCell>
                         <StyledTableCell align="center">Состояние</StyledTableCell>
                     </TableRow>
                 </TableHead>
@@ -98,8 +98,8 @@ export default function List() {
 
                             <StyledTableCell align="center">{row.adress}</StyledTableCell>
                             <StyledTableCell align="center">{row.fioDir}</StyledTableCell>
-                            <StyledTableCell align="center">{row.phone}</StyledTableCell>
-                            <StyledTableCell align="center">{row.email}</StyledTableCell>
+                            <StyledTableCell align="center">{row.contacts}</StyledTableCell>
+                            <StyledTableCell align="center">{row.event}</StyledTableCell>
                             <StyledTableCell align="center">
                                 <Check
                                     id={row.id}
