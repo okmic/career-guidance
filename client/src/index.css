@@ -21,6 +21,12 @@ body {
 button {
   cursor: pointer;
 }
+
+.panel {
+  display: flex;
+  align-items: center;
+  justify-content: space-around;
+}
 .App-header {
   background-color: #3b3833;
   min-height: 100vh;
@@ -65,9 +71,6 @@ button {
   color: red;
 }
 .download {
-  position: absolute;
-  top: 0;
-  right: 0;
   background-color: greenyellow;
   display: flex;
   flex-direction: column;

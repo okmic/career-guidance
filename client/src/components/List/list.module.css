@@ -1,3 +1,6 @@
 .done { 
     text-decoration: 'line-through'
 }
+.wrapper th {
+    cursor: pointer;
+}

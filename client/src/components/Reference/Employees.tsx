@@ -10,9 +10,10 @@ export type ParamInputType = {
         onChange: (c: any) => void
         value: string
     }
+    mini?: boolean
 }
 
-export default memo(function Employees({params}:  ParamInputType) {
+export default memo(function Employees({params, mini}:  ParamInputType) {
 
     const { request } = useHttp()
     const [employees, setEmployees] = useState([])
@@ -30,13 +31,13 @@ export default memo(function Employees({params}:  ParamInputType) {
 
     return <>
         {employees &&
-            <Box sx={{ minWidth: "50vw", margin: '1em 0' }}>
+            <Box sx={!mini ? { minWidth: "50vw" } : {maxWidth: "130px",backgroundColor: '#fff'}}>
                 <FormControl fullWidth>
-                    <InputLabel id="demo-simple-select-label">ФИО</InputLabel>
+                    <InputLabel id="demo-simple-select-label">{!mini ? "ФИО" : ''}</InputLabel>
                     <Select
                         labelId="demo-simple-select-label"
                         id="demo-simple-select"
-                        label="ФИО"
+                        label={!mini ? "ФИО" : ''}
                         value={params.value}
                         onChange={params.onChange}
                     >

@@ -4,10 +4,16 @@ import { Box } from "@mui/system"
 import { memo, useEffect, useState } from "react"
 import { useHttp } from "../../hooks/http.hook"
 import { SchoolType } from "../../types"
-import { ParamInputType } from "./Employees"
 
+export type ParamInputType = {
+    params: {
+        onChange: (c: any) => void
+        value: string
+    }
+    mini?: boolean
+}
 
-export default memo(function Schools ({params}: ParamInputType) {
+export default memo(function Schools ({params, mini}: ParamInputType) {
     
     const {request} = useHttp()
     const [schools, setSchools] = useState([])
@@ -26,13 +32,13 @@ export default memo(function Schools ({params}: ParamInputType) {
 
     return <>
         {schools &&
-            <Box sx={{ minWidth: "50vw" }}>
+            <Box sx={!mini ? { minWidth: "50vw" } : {maxWidth: "130px",backgroundColor: '#fff'}}>
                 <FormControl fullWidth>
-                    <InputLabel id="demo-simple-select-label">Заведения</InputLabel>
+                    <InputLabel id="demo-simple-select-label">{!mini ? "Заведения" : ''}</InputLabel>
                     <Select
                         labelId="demo-simple-select-label"
                         id="demo-simple-select"
-                        label="Заведения"
+                        label={ "Заведения" }
                         {...params}
                     >
                         {

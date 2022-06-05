@@ -1,4 +1,4 @@
-import { memo, useContext, useState } from 'react';
+import { memo, useContext, useEffect, useState } from 'react';
 import '../index.css';
 import { useHttp } from '../hooks/http.hook';
 import List from '../components/List/List';
@@ -31,7 +31,6 @@ function MainPage() {
   const contacts = useInput('')
   
 
-
    const getPostSend = () => {
     try {
       request('http://localhost:5000/send', 'POST', {fio: fio.value, school: shcools.value, day: day.value, time: time.value, adress: adress.value, fioDir: firdir.value, contacts: contacts.value, event: events.value, was: 0 })
@@ -60,20 +59,22 @@ function MainPage() {
   }
 
   return <div className="App">
-            <button className='download'>
+    <main className="App-header">
+
+      <div className="panel">
+        <button onClick={() => setModalDir(!modal)}>Справочники</button>
+        <button onClick={() => setModal(!modal)}>Новая запись</button>
+        <button className='download'>
                <a href="http://localhost:5000/download" target="_blank" rel="noreferrer">
                 <h3>CSV</h3>
                 <img src={down} alt="download" />
                </a>
             </button>
-    <main className="App-header">
-      <div className="panel">
-        <button onClick={() => setModalDir(!modal)}>Справочники</button>
-        <button onClick={() => setModal(!modal)}>Новая запись</button>
       </div>
     <img src={logo} className="logo" alt="logo" />
 
       <h3>Профориентация</h3>
+      <button onClick={getData}>Сбросить фильтры</button>
       {modalDir && <ModalDirectory setModalDir={setModalDir} modalDir={modalDir} />}
 
 
