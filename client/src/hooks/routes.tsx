@@ -4,10 +4,7 @@ import MainPage from "../pages/MainPage"
 
 
 export const useRoutes = (isAuth: boolean) => {
-
-    const isAuthFake = true
-
-    if (isAuthFake) {
+    if (isAuth) {
         return <Routes>
             <Route path="/*" element={<MainPage />} />
         </Routes>

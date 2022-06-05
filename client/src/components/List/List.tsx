@@ -1,5 +1,4 @@
 import React, { useContext, useEffect, useState } from 'react';
-import styles from './list.module.css'
 import { styled } from '@mui/material/styles';
 import Table from '@mui/material/Table';
 import TableBody from '@mui/material/TableBody';
@@ -113,8 +112,7 @@ export default function List() {
 
     }, [data])
 
-    return <div className={styles.wrapper}>
-        {data 
+    return data 
         ? <TableContainer component={Paper}>
         <Table sx={{ minWidth: 700}} aria-label="customized table">
             <TableHead>
@@ -167,6 +165,4 @@ export default function List() {
         </Table>
     </TableContainer>
     : <h1 style={{fontSize: '50px', minHeight:'50vh'}}>Загрузка...</h1>    
-}
-    </div>
 }

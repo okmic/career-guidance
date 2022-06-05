@@ -19,7 +19,7 @@ function MainPage() {
   const { request } = useHttp()
   const [modal, setModal] = useState(false)
   const [modalDir, setModalDir] = useState(false)
-  const {getData} = useContext(DataContext)
+  const { getData } = useContext(DataContext)
 
   const fio = useInput('', true)
   const shcools = useInput('', true)
@@ -29,27 +29,27 @@ function MainPage() {
   const adress = useInput('')
   const firdir = useInput('')
   const contacts = useInput('')
-  
 
-   const getPostSend = () => {
+
+  const getPostSend = () => {
     try {
-      request('http://localhost:5000/send', 'POST', {fio: fio.value, school: shcools.value, day: day.value, time: time.value, adress: adress.value, fioDir: firdir.value, contacts: contacts.value, event: events.value, was: 0 })
+      request('http://localhost:5000/send', 'POST', { fio: fio.value, school: shcools.value, day: day.value, time: time.value, adress: adress.value, fioDir: firdir.value, contacts: contacts.value, event: events.value, was: 0 })
     } catch (e) {
       console.error(e)
     }
-} 
+  }
 
   const createNewProf = () => {
-    if(
-    fio.value === '' || 
-    fio.value === '' ||
-    shcools.value === '' ||
-    day.value === '' ||
-    time.value === '' ||
-    adress.value === '' ||
-    firdir.value === '' ||
-    contacts.value === '' ||
-    events.value === '')  {
+    if (
+      fio.value === '' ||
+      fio.value === '' ||
+      shcools.value === '' ||
+      day.value === '' ||
+      time.value === '' ||
+      adress.value === '' ||
+      firdir.value === '' ||
+      contacts.value === '' ||
+      events.value === '') {
       alert('Для записи необходимо заполнить все поля')
     } else {
       getPostSend()
@@ -65,13 +65,13 @@ function MainPage() {
         <button onClick={() => setModalDir(!modal)}>Справочники</button>
         <button onClick={() => setModal(!modal)}>Новая запись</button>
         <button className='download'>
-               <a href="http://localhost:5000/download" target="_blank" rel="noreferrer">
-                <h3>CSV</h3>
-                <img src={down} alt="download" />
-               </a>
-            </button>
+          <a href="http://localhost:5000/download" target="_blank" rel="noreferrer">
+            <h3>CSV</h3>
+            <img src={down} alt="download" />
+          </a>
+        </button>
       </div>
-    <img src={logo} className="logo" alt="logo" />
+      <img src={logo} className="logo" alt="logo" />
 
       <h3>Профориентация</h3>
       <button onClick={getData}>Сбросить фильтры</button>
@@ -79,19 +79,19 @@ function MainPage() {
 
 
       <List />
-      {modal && 
+      {modal &&
         <Modal callback={() => setModal(false)}>
-          <Employees params={fio}/>
+          <Employees params={fio} />
           <Schools params={shcools} />
-          <Date date={day}/>
-          <Time time={time}/>
-          <Adress adress={adress}/>
+          <Date date={day} />
+          <Time time={time} />
+          <Adress adress={adress} />
           <FioDir fioDir={firdir} />
-          <Contacts contacts={contacts}/>
+          <Contacts contacts={contacts} />
           <Events params={events} />
-          <NewButton 
-          callback={createNewProf}
-          value="Записать"
+          <NewButton
+            callback={createNewProf}
+            value="Записать"
           />
         </Modal>
       }

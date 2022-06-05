@@ -91,8 +91,7 @@ exports.download = async (req, res) => {
             { id: 'time', title: 'Время' },
             { id: 'adress', title: 'Адрес' },
             { id: 'fioDir', title: 'ФИО Директора' },
-            { id: 'phone', title: 'Телефон' },
-            { id: 'email', title: 'Почта' },
+            { id: 'contacts', title: 'Контакты' },
             { id: 'event', title: 'Вид' },
             { id: 'was', title: 'Статус(0 - не посещали, 1 - посещали)' }
         ]

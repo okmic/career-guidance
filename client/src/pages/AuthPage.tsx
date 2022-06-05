@@ -1,5 +1,6 @@
 import { useContext, useState } from "react"
 import { DataContext } from "../context/dataContext"
+import logo from '../img/logo.png'
 
 export const AuthPage = () => {
 
@@ -8,7 +9,11 @@ export const AuthPage = () => {
     const [form, setForm] = useState({login: "", password: ""})
 
         return <div className="WrapperInputs" style={{color: 'white'}} >
-            <h1>career-guidance</h1>
+                
+
+            <img src={logo} className="logo" alt="logo" />
+            <h3>Профориентация</h3>
+            
             <input 
             type="text" 
             value={form.login} 
