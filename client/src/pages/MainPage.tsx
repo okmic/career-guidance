@@ -54,7 +54,7 @@ function MainPage() {
     } else {
       getPostSend()
       setModal(false)
-      getData()
+      setTimeout(() => getData(), 500)
     }
   }
 
