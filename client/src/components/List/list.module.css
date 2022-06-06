@@ -1,3 +1,7 @@
 .done { 
     text-decoration: 'line-through'
 }
+
+.listWrapper {
+    max-height: 100vh;
+}

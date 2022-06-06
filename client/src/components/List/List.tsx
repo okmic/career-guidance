@@ -1,4 +1,5 @@
 import React, { useContext, useEffect, useState } from 'react';
+import styles from './list.module.css'
 import { styled } from '@mui/material/styles';
 import Table from '@mui/material/Table';
 import TableBody from '@mui/material/TableBody';
@@ -113,7 +114,7 @@ export default function List() {
     }, [data])
 
     return data 
-        ? <TableContainer component={Paper}>
+        ? <TableContainer component={Paper} className={styles.listWrapper}>
         <Table sx={{ minWidth: 700}} aria-label="customized table">
             <TableHead>
                 <TableRow>
