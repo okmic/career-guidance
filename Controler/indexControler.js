@@ -46,13 +46,12 @@ exports.refEvents = async (req, res) => {
 
 exports.send = (req, res) => {
     try {
-        const { school, fio, day, time, adress, fioDir, phone, email, event, was } = req.body
-        
-        if ((school || fio || day || time || adress || fioDir || phone || email) === undefined) {
+        const { school, fio, day, time, adress, fioDir,contacts, event, was } = req.body
 
+        if ((school || fio || day || time || adress || fioDir || contacts) === undefined) {
             return response.error({ message: "error date" }, res)
         } else {
-            db.send("INSERT INTO `data` (`id`, `school`, `fio`, `day`, `time`, `adress`, `fioDir`, `phone`, `email`, `event`, `was`) VALUES " + `(NULL, "${school}", "${fio}", "${day}", "${time}", "${adress}", "${fioDir}", "${phone}", "${email}", "${event}", "${was}")`)
+            db.send("INSERT INTO `data` (`id`, `school`, `fio`, `day`, `time`, `adress`, `fioDir`, `contacts`, `event`, `was`) VALUES " + `(NULL, "${school}", "${fio}", "${day}", "${time}", "${adress}", "${fioDir}", "${contacts}", "${event}", "${was}")`)
             //errors send data client
             response.status('ok', res)
         }

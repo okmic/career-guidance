@@ -12,7 +12,7 @@ export const Adress: React.FC<AdressType> = ({adress}) => <TextField {...adress}
 export const FioDir: React.FC<FioDirType> = ({fioDir}) => <TextField {...fioDir} id="standard-basic" label="ФИО директора" variant="standard" />
 
 
-export const Contacts: React.FC<ContactsType> = ({contacts}) => <TextField type='text'  {...contacts} id="standard-basic" label="Почта" variant="standard" />
+export const Contacts: React.FC<ContactsType> = ({contacts}) => <TextField type='text'  {...contacts} id="standard-basic" label="Контакты" variant="standard" />
 
 
 export const UniversInput: React.FC<UniversType> = ({params, label}) => <TextField type="text" label={label} {...params} id="standard-basic" variant="standard" />
