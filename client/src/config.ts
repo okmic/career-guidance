@@ -1,0 +1,1 @@
+export const urlApp: string  = "/career-guidance"

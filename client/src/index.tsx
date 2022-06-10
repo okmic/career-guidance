@@ -9,6 +9,7 @@ import { DataType, FakeLogin } from './types';
 import { useHttp } from './hooks/http.hook';
 import { SortContextProvider } from './context/sortContext';
 import {SortDataType, sortDate, sortEmpls, sortEvents, sortSchools, sortId} from './filters/filters'
+import ResponsiveAppBar from './components/NavBar';
 
 
 
@@ -44,6 +45,7 @@ const App = memo(() => {
   
   return <DataContextProvider data={{ data, setLogin, getData }}>
     <SortContextProvider data={{sortDate, setData, sortSchools, sortEmpls, sortEvents, sortId, reset}}>
+    <ResponsiveAppBar />
       <BrowserRouter>
         <div className="App">
           {routes}

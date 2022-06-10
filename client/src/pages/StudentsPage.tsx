@@ -7,12 +7,12 @@ import Schools from '../components/Reference/Schools';
 import Modal from '../components/Modal/Modal';
 import { useInput } from '../hooks/useInputs';
 import { Adress, Contacts, Date, FioDir, NewButton, Time } from '../components/Inputs';
-import { DataContext } from '../context/dataContext';
-import Events from '../components/Reference/Events';
-import Header from '../components/Header';
+import { DataContext } from '../context/dataContext'
+import Events from '../components/Reference/Events'
+import Header from '../components/Header'
 
 
-function MainPage() {
+function StudentsPage() {
 
   const { request } = useHttp()
   const [modal, setModal] = useState(false)
@@ -57,7 +57,8 @@ function MainPage() {
   }
 
   return <div className="App">
-    <Header
+
+    <Header 
     modal={modal}
     modalDir={modalDir}
     setModal={setModal}
@@ -86,4 +87,4 @@ function MainPage() {
   </div>
 }
 
-export default memo(MainPage)
+export default memo(StudentsPage)
