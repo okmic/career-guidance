@@ -140,6 +140,7 @@ INSERT INTO `schools` (`id`, `school`) VALUES
 CREATE TABLE `statement` (
   `id` int NOT NULL,
   `fio` text CHARACTER SET utf8 COLLATE utf8_general_ci NOT NULL,
+  `group` text CHARACTER SET utf8 COLLATE utf8_general_ci NOT NULL,
   `fio_student` text CHARACTER SET utf8 COLLATE utf8_general_ci NOT NULL,
   `school` text CHARACTER SET utf8 COLLATE utf8_general_ci NOT NULL,
   `contacts` text CHARACTER SET utf8 COLLATE utf8_general_ci NOT NULL,
@@ -150,10 +151,10 @@ CREATE TABLE `statement` (
 -- Дамп данных таблицы `statement`
 --
 
-INSERT INTO `statement` (`id`, `fio`, `fio_student`, `school`, `contacts`, `day`) VALUES
-(1, 'Бостанова Л.К.', 'Смирнов Дмитрий Алексеевич', 'СОШ № 2', '89263254342', '2021-11-30'),
-(2, 'Кунижева Л.А.', 'Иванов Сергей Владимерович', 'СОШ № 8', '8923725432', '2021-11-22'),
-(3, 'Шавтикова Л.М.', 'Копсергенов Шамиль Зедович', 'СОШ № 7', '8928342435', '2021-11-22');
+INSERT INTO `statement` (`id`, `fio`, `group`, `fio_student`, `school`, `contacts`, `day`) VALUES
+(1, 'Бостанова Л.К.', 'ПИЮ', 'Смирнов Дмитрий Алексеевич', 'СОШ № 2', '89263254342', '2021-11-30'),
+(2, 'Кунижева Л.А.', 'ПИЭ', 'Иванов Сергей Владимерович', 'СОШ № 8', '8923725432', '2021-11-22'),
+(3, 'Шавтикова Л.М.', 'ПИЭ', 'Копсергенов Шамиль Зедович', 'СОШ № 7', '8928342435', '2021-11-22');
 
 --
 -- Индексы сохранённых таблиц

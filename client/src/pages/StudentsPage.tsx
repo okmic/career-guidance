@@ -59,6 +59,7 @@ function StudentsPage() {
 
 
   const fio = useInput('', true)
+  const group = useInput('')
   const fio_student = useInput('')
   const shcools = useInput('', true)
   const day = useInput('')
@@ -67,7 +68,7 @@ function StudentsPage() {
 
  const getPostSend = () => {
     try {
-      request(urlApi + '/create-statement', 'POST', { fio: fio.value, fio_student: fio_student.value, school: shcools.value, contacts: contacts.value, day: day.value })
+      request(urlApi + '/create-statement', 'POST', { fio: fio.value, group: group.value, fio_student: fio_student.value, school: shcools.value, contacts: contacts.value, day: day.value })
     } catch (e) {
       console.error(e)
     }
@@ -76,6 +77,7 @@ function StudentsPage() {
   const createNewProf = () => {
     if (
       fio.value === '' ||
+      group.value === '' ||
       fio_student.value === '' ||
       shcools.value === '' ||
       contacts.value === '' ||
@@ -89,8 +91,6 @@ function StudentsPage() {
   } 
 
   return <div className="App">
-
-      
 
     <Header 
     modal={modal}
@@ -106,6 +106,7 @@ function StudentsPage() {
         <Modal callback={() => setModal(false)}>
           <Employees params={fio} />
           <SimpleInput value='ФИО обучающегося' params={fio_student} />
+          <SimpleInput value='Группа' params={group} />
           <Schools params={shcools} />
           <Contacts contacts={contacts} />
           <Date date={day} />

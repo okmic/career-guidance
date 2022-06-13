@@ -114,6 +114,7 @@ exports.downloadStatement = async (req, res) => {
         header: [
             { id: 'id', title: "id" },
             { id: 'fio', title: 'ФИО Сотрудника' },
+            { id: 'group', title: 'Группа' },
             { id: 'fio_student', title: 'ФИО Обучающегося' },
             { id: 'school', title: 'Заведение' },
             { id: 'day', title: 'Дата' },
@@ -166,9 +167,9 @@ exports.allStatement = async (req, res) => {
 
 exports.createStatement = async (req, res) => {
     try {
-        const {fio, fio_student, school, contacts, day} = req.body
-
-        db.send("INSERT INTO `statement` (`id`, `fio`, `fio_student`, `school`, `contacts`, `day`) VALUES " + `(NULL, "${fio}", "${fio_student}", "${school}", "${contacts}", "${day}")`)
+        const {fio, group, fio_student, school, contacts, day} = req.body
+        
+        db.send("INSERT INTO `statement` (`id`, `fio`, `group`, `fio_student`, `school`, `contacts`, `day`) VALUES " + `(NULL, "${fio}", "${group}", "${fio_student}", "${school}", "${contacts}", "${day}")`)
         response.status('ok', res)
     }
     catch (e) {

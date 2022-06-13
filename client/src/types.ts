@@ -21,6 +21,7 @@ export type ObjType = {
 export type StatementObjType = {
     id: number
     fio: string
+    group: string
     fio_student: string
     school: string
     contacts: string

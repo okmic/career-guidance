@@ -75,34 +75,6 @@ export default memo(function ListStatement ({data, setData, reset, removeStateme
     }, [empls.value]) 
 
 
-    const { request } = useHttp()
-
-
- 
-/*     const getUpdateSend = (id: number, was: 0 | 1) => {
-        try {
-            request(urlApi + '/update', 'POST', { id, was }).then((res) => {
-                if (res.status === 200) {
-                    setRows(rows!.map((item) => item.id === id ? ({
-                        id: item.id,
-                        school: item.school,
-                        fio: item.fio,
-                        day: item.day,
-                        time: item.time,
-                        adress: item.adress,
-                        fioDir: item.fioDir,
-                        contacts: item.contacts,
-                        event: item.event,
-                        was: was
-                    }): ({...item})))
-                } else alert('Ошибка запроса')
-            })
-        } catch (e) {
-            console.error(e)
-        }
-    }  */
-
-
     React.useEffect(() => {
         setRows(data)
 
@@ -116,6 +88,7 @@ export default memo(function ListStatement ({data, setData, reset, removeStateme
                     <StyledTableCell onClick={() => sorts.sortId(data, setData)} align="center">По номеру</StyledTableCell>
                     <StyledTableCell align="center"><Employees params={({value: empls.value, onChange: empls.onChange})} mini={true}/></StyledTableCell>
                     <StyledTableCell align="center"></StyledTableCell>
+                    <StyledTableCell align="center"></StyledTableCell>
                     <StyledTableCell align="center"><Schools mini={true} params={({value: schools.value, onChange: schools.onChange})} /></StyledTableCell>
                     <StyledTableCell align="center"></StyledTableCell>
                     <StyledTableCell onClick={() => sorts.sortDate(data, setData)} align="center">По дате</StyledTableCell>
@@ -127,6 +100,7 @@ export default memo(function ListStatement ({data, setData, reset, removeStateme
                 <TableRow>
                     <StyledTableCell align="center">№ п/п</StyledTableCell>
                     <StyledTableCell align="center">ФИО Ответственного</StyledTableCell>
+                    <StyledTableCell align="center">Группа</StyledTableCell>
                     <StyledTableCell align="center">ФИО обучающегося</StyledTableCell>
                     <StyledTableCell align="center">Учреждения</StyledTableCell>
                     <StyledTableCell align="center">Контакты</StyledTableCell>
@@ -140,6 +114,7 @@ export default memo(function ListStatement ({data, setData, reset, removeStateme
                     <StyledTableRow key={row.id} >
                         <StyledTableCell align="center">{row.id}</StyledTableCell>
                         <StyledTableCell align="center">{row.fio}</StyledTableCell>
+                        <StyledTableCell align="center">{row.group}</StyledTableCell>
                         <StyledTableCell align="center">{row.fio_student}</StyledTableCell>
                         <StyledTableCell align="center">{row.school}</StyledTableCell>
                         <StyledTableCell align="center">{row.contacts}</StyledTableCell>
