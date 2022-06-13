@@ -2,6 +2,7 @@ import { FormControl, InputLabel, MenuItem, Select } from "@mui/material"
 //@ts-ignore
 import { Box } from "@mui/system"
 import { memo, useEffect, useState } from "react"
+import { urlApi } from "../../config"
 import { useHttp } from "../../hooks/http.hook"
 import { EventsType } from "../../types"
 
@@ -22,7 +23,7 @@ export default memo(function Events ({params, mini}: ParamInputType) {
 
     const getEvents = () => {
         try {
-            request('http://localhost:5000/events', 'GET').then((res) => setEvents(res.values))
+            request(urlApi + '/events', 'GET').then((res) => setEvents(res.values))
         } catch (e) {
             console.error(e)
         }

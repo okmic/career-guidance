@@ -10,6 +10,8 @@ import { Adress, Contacts, Date, FioDir, NewButton, Time } from '../components/I
 import { DataContext } from '../context/dataContext';
 import Events from '../components/Reference/Events';
 import Header from '../components/Header';
+import { urlApi } from '../config';
+import { Button } from '@mui/material';
 
 
 function MainPage() {
@@ -28,10 +30,9 @@ function MainPage() {
   const firdir = useInput('')
   const contacts = useInput('')
 
-
   const getPostSend = () => {
     try {
-      request('http://localhost:5000/send', 'POST', { fio: fio.value, school: shcools.value, day: day.value, time: time.value, adress: adress.value, fioDir: firdir.value, contacts: contacts.value, event: events.value, was: 0 })
+      request(urlApi + '/send', 'POST', { fio: fio.value, school: shcools.value, day: day.value, time: time.value, adress: adress.value, fioDir: firdir.value, contacts: contacts.value, event: events.value, was: 0 })
     } catch (e) {
       console.error(e)
     }
@@ -58,11 +59,15 @@ function MainPage() {
 
   return <div className="App">
     <Header
-    modal={modal}
-    modalDir={modalDir}
-    setModal={setModal}
-    setModalDir={setModalDir}
+      modal={modal}
+      modalDir={modalDir}
+      setModal={setModal}
+      setModalDir={setModalDir}
+      downloadUrl='/download'
+      title='Профориентация'
     >
+
+      <Button sx={{backgroundColor: '#fff', margin: '1em 0'}} onClick={getData}>Сбросить фильтры</Button>
 
       <List />
       {modal &&

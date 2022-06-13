@@ -2,6 +2,7 @@ import { FormControl, InputLabel, MenuItem, Select } from "@mui/material"
 //@ts-ignore
 import { Box } from "@mui/system"
 import { memo, useEffect, useState } from "react"
+import { urlApi } from "../../config"
 import { useHttp } from "../../hooks/http.hook"
 import { EmployeesType } from "../../types"
 
@@ -21,7 +22,7 @@ export default memo(function Employees({params, mini}:  ParamInputType) {
 
     const getEmployees = () => {
         try {
-            request('http://localhost:5000/employees', 'GET').then((res) => setEmployees(res.values))
+            request(urlApi + '/employees', 'GET').then((res) => setEmployees(res.values))
         } catch (e) {
             console.error(e)
         }

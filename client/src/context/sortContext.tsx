@@ -2,12 +2,12 @@ import React from "react"
 import { SortDataType, SortSetDataType } from "../filters/filters"
 
 type _sort = {
-  sortDate: (d: SortDataType, f: SortSetDataType) => void
+  sortDate: (d: any, f: any) => void
   setData: (d: SortDataType) => void
-  sortSchools: (d: SortDataType, f: SortSetDataType, v: string) => void
-  sortEmpls: (d: SortDataType, f: SortSetDataType, v: string) => void
+  sortSchools: (d: any, f: any, v: string) => void
+  sortEmpls: (d: any, f: any, v: string) => void
   sortEvents: (d: SortDataType, f: SortSetDataType, v: string) => void
-  sortId: (d: SortDataType, f: SortSetDataType) => void
+  sortId: (d: any, f: any) => void
   reset: boolean
 }
 

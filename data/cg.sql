@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Хост: 127.0.0.1:3306
--- Время создания: Май 26 2022 г., 12:08
+-- Время создания: Июн 11 2022 г., 14:34
 -- Версия сервера: 8.0.24
 -- Версия PHP: 7.1.33
 
@@ -86,6 +86,27 @@ INSERT INTO `employees` (`id`, `fio`) VALUES
 -- --------------------------------------------------------
 
 --
+-- Структура таблицы `events`
+--
+
+CREATE TABLE `events` (
+  `id` int NOT NULL,
+  `event` varchar(300) CHARACTER SET utf8 COLLATE utf8_general_ci NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb3;
+
+--
+-- Дамп данных таблицы `events`
+--
+
+INSERT INTO `events` (`id`, `event`) VALUES
+(1, 'Дошкольная'),
+(2, 'Школьная'),
+(3, 'Студенческая'),
+(4, 'Профориентация для взрослых');
+
+-- --------------------------------------------------------
+
+--
 -- Структура таблицы `schools`
 --
 
@@ -110,24 +131,29 @@ INSERT INTO `schools` (`id`, `school`) VALUES
 (9, 'СОШ № 10'),
 (10, 'Центр образования № 11');
 
+-- --------------------------------------------------------
+
 --
--- Структура таблицы `events`
+-- Структура таблицы `statement`
 --
 
-CREATE TABLE `events` (
+CREATE TABLE `statement` (
   `id` int NOT NULL,
-  `event` varchar(300) CHARACTER SET utf8 COLLATE utf8_general_ci NOT NULL
+  `fio` text CHARACTER SET utf8 COLLATE utf8_general_ci NOT NULL,
+  `fio_student` text CHARACTER SET utf8 COLLATE utf8_general_ci NOT NULL,
+  `school` text CHARACTER SET utf8 COLLATE utf8_general_ci NOT NULL,
+  `contacts` text CHARACTER SET utf8 COLLATE utf8_general_ci NOT NULL,
+  `day` text CHARACTER SET utf8 COLLATE utf8_general_ci NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb3;
 
 --
--- Дамп данных таблицы `events`
+-- Дамп данных таблицы `statement`
 --
 
-INSERT INTO `events` (`id`, `event`) VALUES
-(1, 'Дошкольная'),
-(2, 'Школьная'),
-(3, 'Студенческая'),
-(4, 'Профориентация для взрослых');
+INSERT INTO `statement` (`id`, `fio`, `fio_student`, `school`, `contacts`, `day`) VALUES
+(1, 'Бостанова Л.К.', 'Смирнов Дмитрий Алексеевич', 'СОШ № 2', '89263254342', '2021-11-30'),
+(2, 'Кунижева Л.А.', 'Иванов Сергей Владимерович', 'СОШ № 8', '8923725432', '2021-11-22'),
+(3, 'Шавтикова Л.М.', 'Копсергенов Шамиль Зедович', 'СОШ № 7', '8928342435', '2021-11-22');
 
 --
 -- Индексы сохранённых таблиц
@@ -146,16 +172,21 @@ ALTER TABLE `employees`
   ADD PRIMARY KEY (`id`);
 
 --
+-- Индексы таблицы `events`
+--
+ALTER TABLE `events`
+  ADD PRIMARY KEY (`id`);
+
+--
 -- Индексы таблицы `schools`
 --
 ALTER TABLE `schools`
   ADD PRIMARY KEY (`id`);
 
 --
--- Индексы таблицы `events`
+-- Индексы таблицы `statement`
 --
-
-ALTER TABLE `events`
+ALTER TABLE `statement`
   ADD PRIMARY KEY (`id`);
 
 --
@@ -175,16 +206,22 @@ ALTER TABLE `employees`
   MODIFY `id` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=11;
 
 --
+-- AUTO_INCREMENT для таблицы `events`
+--
+ALTER TABLE `events`
+  MODIFY `id` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
+
+--
 -- AUTO_INCREMENT для таблицы `schools`
 --
 ALTER TABLE `schools`
   MODIFY `id` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=11;
-COMMIT;
 
--- AUTO_INCREMENT для таблицы `schools`
 --
-ALTER TABLE `events`
-  MODIFY `id` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
+-- AUTO_INCREMENT для таблицы `statement`
+--
+ALTER TABLE `statement`
+  MODIFY `id` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;

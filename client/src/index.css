@@ -40,9 +40,24 @@ button {
 .logo {
   max-width: 150px;
 }
+.logoNav {
+  margin-right: 1em;
+  padding: 5px;
+  max-width: 50px;
+}
 .App-link {
   color: #61dafb;
 }
+
+.WrapperAuth {
+  min-width: 100vw;
+  min-height: 100vh;
+  position: absolute;
+  top: 0;
+  left: 0;
+  z-index: 10;
+}
+
 .WrapperInputs {
   width: 100%;
   min-height: 100vh;

@@ -1,8 +1,8 @@
 import React, { memo, useContext } from "react";
-import logo from '../img/logo.png'
+
 import down from '../img/download.png'
 import ModalDirectory from "./ModalDirectory";
-import { DataContext } from "../context/dataContext";
+import { urlApi } from "../config";
 
 type PropsType = {
     setModalDir: (m: boolean) => void
@@ -10,29 +10,32 @@ type PropsType = {
     modalDir: boolean
     modal: boolean
     children: React.ReactNode
+    downloadUrl: "/download" | "/download-statement"
+    title: "Профориентация" | "Заявления"
 }
 
-export default memo (function Header({modalDir, setModal, setModalDir, modal, children}: PropsType) {
-
-    const { getData } = useContext(DataContext)
+export default memo (function Header({modalDir, setModal, setModalDir, modal, downloadUrl = '/download', title = "Профориентация", children}: PropsType) {
 
     return  <main className="App-header">
+
+<h1>{title}</h1>
+
     <div className="panel">
       <button onClick={() => setModalDir(!modal)}>Справочники</button>
       <button onClick={() => setModal(!modal)}>Новая запись</button>
+
       <button className='download'>
-        <a href="http://localhost:5000/download" target="_blank" rel="noreferrer">
+        <a href={urlApi + downloadUrl} target="_blank" rel="noreferrer">
           <h3>CSV</h3>
           <img src={down} alt="download" />
         </a>
       </button>
+
     </div>
-    <img src={logo} className="logo" alt="logo" />
 
-    <h3>Профориентация</h3>
-    <button onClick={getData}>Сбросить фильтры</button>
+
+
     {modalDir && <ModalDirectory setModalDir={setModalDir} modalDir={modalDir} />}
-
 
     {children}
   </main>

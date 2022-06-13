@@ -2,6 +2,7 @@ import { TextField } from "@mui/material"
 import Button from '@mui/material/Button'
 import { useEffect, useState } from "react"
 
+export const SimpleInput: React.FC<SipleIType> = ({params, value}) => <TextField {...params} id="standard-basic" label={value} variant="standard" />
 
 export const Date: React.FC<DateType> = ({date}) => <TextField type="date" {...date} id="standard-basic" variant="standard" />
 
@@ -42,6 +43,11 @@ export const NewButton = ({callback, value}: any) => <Button sx={{marginTop: '1e
 type input = {
     value: string | number | undefined| boolean
     onChange: (e: any) => void
+}
+
+type SipleIType = {
+    params: input
+    value: string
 }
 type DateType = {
     date: input

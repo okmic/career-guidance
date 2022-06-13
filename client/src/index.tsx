@@ -9,7 +9,8 @@ import { DataType, FakeLogin } from './types';
 import { useHttp } from './hooks/http.hook';
 import { SortContextProvider } from './context/sortContext';
 import {SortDataType, sortDate, sortEmpls, sortEvents, sortSchools, sortId} from './filters/filters'
-import ResponsiveAppBar from './components/NavBar';
+import ResponsiveAppBar from './components/NavBar/NavBar';
+import { urlApi } from './config';
 
 
 
@@ -27,7 +28,7 @@ const App = memo(() => {
 
   const getData = async () => {
     try {
-      request('http://localhost:5000/all', 'get').then((res) => {
+      request(urlApi + '/all', 'get').then((res) => {
         if (res.status === 200 && res.values.length > 0) {
           setData(res.values.map((element: DataType) => ({ ...element })))
           setReset(!reset)
@@ -45,8 +46,8 @@ const App = memo(() => {
   
   return <DataContextProvider data={{ data, setLogin, getData }}>
     <SortContextProvider data={{sortDate, setData, sortSchools, sortEmpls, sortEvents, sortId, reset}}>
-    <ResponsiveAppBar />
       <BrowserRouter>
+      <ResponsiveAppBar />
         <div className="App">
           {routes}
         </div>

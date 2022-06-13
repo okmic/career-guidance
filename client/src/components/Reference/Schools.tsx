@@ -2,6 +2,7 @@ import { FormControl, InputLabel, MenuItem, Select } from "@mui/material"
 //@ts-ignore
 import { Box } from "@mui/system"
 import { memo, useEffect, useState } from "react"
+import { urlApi } from "../../config"
 import { useHttp } from "../../hooks/http.hook"
 import { SchoolType } from "../../types"
 
@@ -21,7 +22,7 @@ export default memo(function Schools ({params, mini}: ParamInputType) {
 
     const getSchools = () => {
         try {
-            request('http://localhost:5000/schools', 'GET').then((res) => setSchools(res.values))
+            request(urlApi + '/schools', 'GET').then((res) => setSchools(res.values))
         } catch (e) {
             console.error(e)
         }

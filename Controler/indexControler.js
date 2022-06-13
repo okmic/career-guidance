@@ -95,14 +95,39 @@ exports.download = async (req, res) => {
             { id: 'was', title: 'Статус(0 - не посещали, 1 - посещали)' }
         ]
     })
-    csvWriter.writeRecords(data).then(() => {
+
+     csvWriter.writeRecords(data).then(() => {
         console.log('csv writed')
 
         let fileLocation = path.join('./data', 'data.csv');
 
         res.download(fileLocation)
-    })
+    }) 
+}
 
+exports.downloadStatement = async (req, res) => {
+
+    const statements = await db.all('SELECT * FROM `statement`')
+
+    const csvWriterStatement = createCsvWriter({
+        path: 'data/data_statement.csv',
+        header: [
+            { id: 'id', title: "id" },
+            { id: 'fio', title: 'ФИО Сотрудника' },
+            { id: 'fio_student', title: 'ФИО Обучающегося' },
+            { id: 'school', title: 'Заведение' },
+            { id: 'day', title: 'Дата' },
+            { id: 'contacts', title: 'Контакты' }
+        ]
+    })
+    
+    csvWriterStatement.writeRecords(statements).then(() => {
+        console.log('csv statement writed')
+
+        let fileLocation = path.join('./data', 'data_statement.csv');
+
+        res.download(fileLocation)
+    })
 }
 
 exports.addDirectory = (req, res) => {
@@ -127,4 +152,37 @@ exports.addDirectory = (req, res) => {
         
     }
 
+}
+
+exports.allStatement = async (req, res) => {
+    try {
+        const data = await db.all('SELECT * FROM `statement`')
+        response.status(data, res)
+    }
+    catch (e) {
+        console.error(e)
+    }
+}
+
+exports.createStatement = async (req, res) => {
+    try {
+        const {fio, fio_student, school, contacts, day} = req.body
+
+        db.send("INSERT INTO `statement` (`id`, `fio`, `fio_student`, `school`, `contacts`, `day`) VALUES " + `(NULL, "${fio}", "${fio_student}", "${school}", "${contacts}", "${day}")`)
+        response.status('ok', res)
+    }
+    catch (e) {
+        response.error({ message: e }, res)
+    }
+}
+
+exports.removeStatement = async (req, res) => {
+    try {
+        const {id} = req.body
+        db.send("DELETE FROM `statement` WHERE `id` =" + id)
+        response.status('ok', res) 
+    }
+    catch (e) {
+        response.error({ message: e }, res)
+    }
 }

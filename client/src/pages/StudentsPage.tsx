@@ -1,4 +1,4 @@
-import { memo, useContext, useState } from 'react';
+import { memo, useContext, useEffect, useState } from 'react';
 import '../index.css';
 import { useHttp } from '../hooks/http.hook';
 import List from '../components/List/List';
@@ -6,32 +6,69 @@ import Employees from '../components/Reference/Employees';
 import Schools from '../components/Reference/Schools';
 import Modal from '../components/Modal/Modal';
 import { useInput } from '../hooks/useInputs';
-import { Adress, Contacts, Date, FioDir, NewButton, Time } from '../components/Inputs';
-import { DataContext } from '../context/dataContext'
-import Events from '../components/Reference/Events'
+import { Contacts, Date, FioDir, NewButton, SimpleInput, Time } from '../components/Inputs';
 import Header from '../components/Header'
+import { urlApi } from '../config';
+import { StatementObjType, StatementType } from '../types';
+import ListStatement from '../components/List/ListStatement';
+import { Button } from '@mui/material';
+
 
 
 function StudentsPage() {
 
+
   const { request } = useHttp()
+
+  const [data, setData] = useState<StatementType>([])
+
+  const [reset, setReset] = useState(false)
+
+  const getData = async () => {
+    try {
+      request(urlApi + '/all-statement', 'get').then((res) => {
+        if (res.status === 200 && res.values.length > 0) {
+          setData(res.values.map((element: StatementObjType) => ({ ...element })))
+        }
+      })
+    } catch (e) {
+      console.error(e)
+    }
+  }
+
+  const removeStatement =  (id: number) => {
+    try {
+      request(urlApi + '/remove-statement', 'POST', {id}).then(e => {
+        if (e.status === 200 ) {
+          setData(data.filter((item) => item.id !== id))
+        } 
+      })
+  
+    } catch (e) {
+      console.error(e)
+    }
+  }
+
+  useEffect(() => {
+    getData()
+  }, [reset])
+
+
+
   const [modal, setModal] = useState(false)
   const [modalDir, setModalDir] = useState(false)
-  const { getData } = useContext(DataContext)
+
 
   const fio = useInput('', true)
+  const fio_student = useInput('')
   const shcools = useInput('', true)
-  const events = useInput('', true)
   const day = useInput('')
-  const time = useInput('')
-  const adress = useInput('')
-  const firdir = useInput('')
   const contacts = useInput('')
 
 
-  const getPostSend = () => {
+ const getPostSend = () => {
     try {
-      request('http://localhost:5000/send', 'POST', { fio: fio.value, school: shcools.value, day: day.value, time: time.value, adress: adress.value, fioDir: firdir.value, contacts: contacts.value, event: events.value, was: 0 })
+      request(urlApi + '/create-statement', 'POST', { fio: fio.value, fio_student: fio_student.value, school: shcools.value, contacts: contacts.value, day: day.value })
     } catch (e) {
       console.error(e)
     }
@@ -40,48 +77,45 @@ function StudentsPage() {
   const createNewProf = () => {
     if (
       fio.value === '' ||
-      fio.value === '' ||
+      fio_student.value === '' ||
       shcools.value === '' ||
-      day.value === '' ||
-      time.value === '' ||
-      adress.value === '' ||
-      firdir.value === '' ||
       contacts.value === '' ||
-      events.value === '') {
+      day.value === '') {
       alert('Для записи необходимо заполнить все поля')
     } else {
       getPostSend()
       setModal(false)
       setTimeout(() => getData(), 500)
     }
-  }
+  } 
 
   return <div className="App">
+
+      
 
     <Header 
     modal={modal}
     modalDir={modalDir}
     setModal={setModal}
     setModalDir={setModalDir}
+    downloadUrl='/download-statement'
+    title='Заявления'
     >
-
-      <List />
+      <Button sx={{backgroundColor: '#fff', margin: '1em 0'}} onClick={() => setReset(!reset) }>Сбросить фильтры</Button>
+       <ListStatement removeStatement={removeStatement} reset={reset} data={data && data} setData={setData} />
       {modal &&
         <Modal callback={() => setModal(false)}>
           <Employees params={fio} />
+          <SimpleInput value='ФИО обучающегося' params={fio_student} />
           <Schools params={shcools} />
-          <Date date={day} />
-          <Time time={time} />
-          <Adress adress={adress} />
-          <FioDir fioDir={firdir} />
           <Contacts contacts={contacts} />
-          <Events params={events} />
+          <Date date={day} />
           <NewButton
             callback={createNewProf}
             value="Записать"
-          />
+          /> 
         </Modal>
-      }
+      } 
     </Header>
 
   </div>

@@ -17,7 +17,18 @@ export type ObjType = {
     event: string
     was: number
 }
+
+export type StatementObjType = {
+    id: number
+    fio: string
+    fio_student: string
+    school: string
+    contacts: string
+    day: string
+}
+
 export type DataType = Array<ObjType>
+export type StatementType = Array<StatementObjType>
 
 export type ContextType = {
     children: React.ReactNode

@@ -2,14 +2,17 @@ import { SelectChangeEvent } from "@mui/material";
 import { useState } from "react"
 
 
+
 export const useInput = (initValue: string, select?: boolean, sort?: boolean) => {
+
+    const validate = (value: string) => value.replace(/['"«»]/g, '')
 
     const [value, setValue] = useState(initValue)
 
     if(select && !sort) {
 
         const onChange = (event: SelectChangeEvent) => {
-            setValue(event.target.value as string)
+            setValue(validate(event.target.value as string))
         }
 
 
@@ -19,7 +22,7 @@ export const useInput = (initValue: string, select?: boolean, sort?: boolean) =>
     } else if (sort) {
 
         const onChange = (event: SelectChangeEvent) => {
-            setValue(event.target.value as string)
+            setValue(validate(event.target.value as string))
         }
 
         const remove = () => setValue('')
@@ -29,7 +32,7 @@ export const useInput = (initValue: string, select?: boolean, sort?: boolean) =>
         }
     }else {
         const onChange = (e: any) => {
-            setValue(e.currentTarget.value)
+            setValue(validate(e.currentTarget.value))
         }
     
         return {

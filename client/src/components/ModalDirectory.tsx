@@ -1,3 +1,4 @@
+import { urlApi } from "../config";
 import { useHttp } from "../hooks/http.hook";
 import { useInput } from "../hooks/useInputs";
 import { NewButton, UniversInput } from "./Inputs";
@@ -21,7 +22,7 @@ export default function ModalDirectory ({setModalDir}: PropsType) {
 
     const getPostSend = (value: string, type: string) => {
         try {
-          request(`http://localhost:5000/add-directory`, 'POST', {value, type})
+          request(urlApi + `/add-directory`, 'POST', {value, type})
         } catch (e) {
           console.error(e)
         }
