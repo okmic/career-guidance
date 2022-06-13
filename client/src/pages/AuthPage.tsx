@@ -27,7 +27,7 @@ export const AuthPage = () => {
                 placeholder="password"
             />
             <button
-                onClick={() => setLogin(form)}>In</button>
+                onClick={() => setLogin(form)}>Войти</button>
         </div>
     </div>
 }

@@ -1,12 +1,11 @@
-import { memo, useContext, useEffect, useState } from 'react';
+import { memo, useEffect, useState } from 'react';
 import '../index.css';
 import { useHttp } from '../hooks/http.hook';
-import List from '../components/List/List';
 import Employees from '../components/Reference/Employees';
 import Schools from '../components/Reference/Schools';
 import Modal from '../components/Modal/Modal';
 import { useInput } from '../hooks/useInputs';
-import { Contacts, Date, FioDir, NewButton, SimpleInput, Time } from '../components/Inputs';
+import { Contacts, Date, NewButton, SimpleInput } from '../components/Inputs';
 import Header from '../components/Header'
 import { urlApi } from '../config';
 import { StatementObjType, StatementType } from '../types';
